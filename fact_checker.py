@@ -195,7 +195,7 @@ def create_streamlit_interface():
         st.session_state['question_choices'] = question_choices
 
     if st.session_state['question_choices']:
-      current_question = np.random.choice(question_choices)
+      current_question = np.random.choice(st.session_state['question_choices'])
       st.session_state['current_question'] = current_question
 
     if 'message_history' not in st.session_state:
@@ -269,6 +269,9 @@ def create_streamlit_interface():
   
       def start_new_chat():
           st.session_state['message_history'] = []
+          st.session_state['current_question'] = None
+          st.session_state['question_choices'] = []
+          st.session_state.disabled = False
   
       # # Display messages using HTML and CSS in a scrollable container
       for message in st.session_state['message_history']:
