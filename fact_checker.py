@@ -86,7 +86,7 @@ def semantic_search(query):
 
     return "Oops, something went wrong with the query. Please try again later."
 
-def check_fact(query):
+def check_fact(bot_question, query):
     """Check if the user's query can be verified semantically with the data."""
     system_prompt = """
         Role: As a proficient educational assistant dedicated to supporting learners, your primary responsibilities include providing targeted feedback based solely on the information from the designated database. You should focus on enhancing student understanding without summarizing or deviating from the source material.
@@ -124,6 +124,7 @@ def check_fact(query):
                 model="gpt-4-turbo",
                 messages=[
                     {"role": "system", "content": system_prompt},
+                    {"role": "assistant", "content" : bot_question},
                     {"role": "user", "content": query},
                     {"role": "assistant", "content": matched_content}
                 ]
@@ -185,7 +186,7 @@ def create_streamlit_interface():
 
     if st.session_state['question_choices']:
       current_question = np.random.choice(question_choices)
-      st.write(current_question)
+      st.session_state['message_history'].append({'sender': "🤖Chatbot", 'text': current_question})
     
       # CSS for styling message history, fixed chat input, and labels
       st.markdown("""
@@ -248,7 +249,7 @@ def create_streamlit_interface():
               
               # Show spinner while processing the response
               with st.spinner('Crafting response...'):
-                  response = check_fact(user_query)  # Adjusted to not use index or embeddings
+                  response = check_fact(current_question, user_query)  # Adjusted to not use index or embeddings
                   st.session_state['message_history'].append({'sender': '🤖Chatbot', 'text': response})
   
       def start_new_chat():
