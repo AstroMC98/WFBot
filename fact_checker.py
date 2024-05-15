@@ -162,8 +162,6 @@ def create_streamlit_interface():
 
 
     # Topic Selection
-    st.session_state['Show_Questions'] = True
-    st.session_state['current_question'] = None
     if st.session_state['Show_Questions']:
       question_col1, question_col2, question_col3 = st.columns([1,1,1])
       current_question = ''
@@ -197,7 +195,6 @@ def create_streamlit_interface():
     if st.session_state['current_question']:
       current_question = st.session_state['current_question']
       st.session_state['message_history'].append({'sender': "🤖Chatbot", 'text': current_question})
-      st.session_state['Show_Questions'] = False
     
       # CSS for styling message history, fixed chat input, and labels
       st.markdown("""
