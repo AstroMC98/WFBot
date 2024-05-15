@@ -162,32 +162,31 @@ def create_streamlit_interface():
 
 
     # Topic Selection
-    if st.session_state['Show_Questions']:
-      question_col1, question_col2, question_col3 = st.columns([1,1,1])
-      current_question = ''
-      if 'question_choices' not in st.session_state:
-        st.session_state['question_choices'] = None
-      else:
-        question_choices = st.session_state['question_choices']
-        
-      with question_col1:
-        if st.button("Prophethood"):
-          question_choices = topic_choices["Prophethood"]
-          st.session_state['question_choices'] = question_choices
-  
-      with question_col2:
-        if st.button("Tawhid"):
-          question_choices = topic_choices["Tawhid"]
-          st.session_state['question_choices'] = question_choices
-  
-      with question_col3:
-        if st.button("Qiyama"):
-          question_choices = topic_choices["Qiyama"]
-          st.session_state['question_choices'] = question_choices
+    question_col1, question_col2, question_col3 = st.columns([1,1,1])
+    current_question = ''
+    if 'question_choices' not in st.session_state:
+      st.session_state['question_choices'] = None
+    else:
+      question_choices = st.session_state['question_choices']
+      
+    with question_col1:
+      if st.button("Prophethood"):
+        question_choices = topic_choices["Prophethood"]
+        st.session_state['question_choices'] = question_choices
 
-      if st.session_state['question_choices']:
-        current_question = np.random.choice(question_choices)
-        st.session_state['current_question'] = current_question
+    with question_col2:
+      if st.button("Tawhid"):
+        question_choices = topic_choices["Tawhid"]
+        st.session_state['question_choices'] = question_choices
+
+    with question_col3:
+      if st.button("Qiyama"):
+        question_choices = topic_choices["Qiyama"]
+        st.session_state['question_choices'] = question_choices
+
+    if st.session_state['question_choices']:
+      current_question = np.random.choice(question_choices)
+      st.session_state['current_question'] = current_question
 
     if 'message_history' not in st.session_state:
        st.session_state['message_history'] = []
