@@ -33,20 +33,20 @@ openai_ef = embedding_functions.OpenAIEmbeddingFunction(api_key=OPENAI_KEY,
 
 # Initialize the Questions
 topic_choices = {
+  "Tawhid" : [
+    "What was the goal of the Prophets?",
+    "What is the importance or place of Tawhid in Islam?",
+    "What are the levels of Tawhid?",
+  ],
   "Prophethood" : [
     "What was the goal of the Prophets?",
-    "What was the goal of the Prophets?",
-    "What was the goal of the Prophets?",
-  ],
-  "Tawhid" : [
-    "What is the literal meaning of the word \"Tawhid\"?",
-    "What is the literal meaning of the word \"Tawhid\"?",
-    "What is the literal meaning of the word \"Tawhid\"?",
+    "What is Prophethood?",
+    "What is the necessity of Prophethood?",
   ],
   "Qiyama" : [
     "What are some of the signs of Qiyama mentioned in the Quran?",
-    "What are some of the signs of Qiyama mentioned in the Quran?",
-    "What are some of the signs of Qiyama mentioned in the Quran?",
+    "What is Qiyama?",
+    "Which issues will people be questioned about on Qiyama according to the Quran?",
   ]
 }
 
@@ -159,25 +159,25 @@ def create_streamlit_interface():
     st.write("How can I help you today?")
 
 
-    # Topic Selection
-    # question_col1, question_col2, question_col3 = st.columns([1,1,1])
-    # current_question = ''
-    # question_choices = None
-    # with question_col1:
-    #   if st.button("Prophethood"):
-    #     question_choices = topic_choices["Prophethood"]
+    Topic Selection
+    question_col1, question_col2, question_col3 = st.columns([1,1,1])
+    current_question = ''
+    question_choices = None
+    with question_col1:
+      if st.button("Prophethood"):
+        question_choices = topic_choices["Prophethood"]
 
-    # with question_col2:
-    #   if st.button("Tawhid"):
-    #     question_choices = topic_choices["Tawhid"]
+    with question_col2:
+      if st.button("Tawhid"):
+        question_choices = topic_choices["Tawhid"]
 
-    # with question_col3:
-    #   if st.button("Qiyama"):
-    #     question_choices = topic_choices["Qiyama"]
+    with question_col3:
+      if st.button("Qiyama"):
+        question_choices = topic_choices["Qiyama"]
 
-    if True:
-    #   current_question = np.random.choice(question_choices)
-    #   st.write(current_question)
+    if question_choices:
+      current_question = np.random.choice(question_choices)
+      st.write(current_question)
     
       # CSS for styling message history, fixed chat input, and labels
       st.markdown("""
