@@ -159,7 +159,7 @@ def create_streamlit_interface():
     st.write("How can I help you today?")
 
 
-    Topic Selection
+    # Topic Selection
     question_col1, question_col2, question_col3 = st.columns([1,1,1])
     current_question = ''
     question_choices = None
