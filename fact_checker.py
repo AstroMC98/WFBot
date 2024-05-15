@@ -184,8 +184,11 @@ def create_streamlit_interface():
         question_choices = topic_choices["Qiyama"]
         st.session_state['question_choices'] = question_choices
 
+    if 'message_history' not in st.session_state:
+       st.session_state['message_history'] = []
     if st.session_state['question_choices']:
       current_question = np.random.choice(question_choices)
+      st.session_state['message_history'].append({'sender': "🤖Chatbot", 'text': current_question})
     
       # CSS for styling message history, fixed chat input, and labels
       st.markdown("""
@@ -236,10 +239,6 @@ def create_streamlit_interface():
               }
           </style>
           """, unsafe_allow_html=True)
-  
-      if 'message_history' not in st.session_state:
-          st.session_state['message_history'] = []
-          st.session_state['message_history'].append({'sender': "🤖Chatbot", 'text': current_question})
   
       def ask_question():
           user_query = st.session_state.query
