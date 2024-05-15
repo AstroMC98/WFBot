@@ -183,24 +183,36 @@ def create_streamlit_interface():
 
     with question_col1:
       button1 = st.button("Prophethood", key = "q1_clicked", disabled=st.session_state.get("disabled", False))
-      if button1:
-        question_choices = topic_choices["Prophethood"]
-        st.session_state['question_choices'] = question_choices
-        st.session_state.disabled = True
+      # if button1:
+      #   question_choices = topic_choices["Prophethood"]
+      #   st.session_state['question_choices'] = question_choices
+      #   st.session_state.disabled = True
 
     with question_col2:
       button2 = st.button("Tawhid", key = "q2_clicked", disabled=st.session_state.get("disabled", False))
-      if button2:
-        question_choices = topic_choices["Tawhid"]
-        st.session_state['question_choices'] = question_choices
-        st.session_state.disabled = True
+      # if button2:
+        # question_choices = topic_choices["Tawhid"]
+        # st.session_state['question_choices'] = question_choices
+        # st.session_state.disabled = True
 
     with question_col3:
       button3 = st.button("Qiyama", key = "q3_clicked", disabled=st.session_state.get("disabled", False))
-      if button3:
-        question_choices = topic_choices["Qiyama"]
-        st.session_state['question_choices'] = question_choices
-        st.session_state.disabled = True
+      # if button3:
+        # question_choices = topic_choices["Qiyama"]
+        # st.session_state['question_choices'] = question_choices
+        # st.session_state.disabled = True
+
+    if st.session_state['q1_clicked']:
+      st.session_state['question_choices' ]= topic_choices["Tawhid"]
+      st.session_state.disabled = True
+
+    if st.session_state['q2_clicked']:
+      st.session_state['question_choices' ]= topic_choices["Prophethood"]
+      st.session_state.disabled = True
+  
+    if st.session_state['q3_clicked']:
+      st.session_state['question_choices' ]= topic_choices["Qiyama"]
+      st.session_state.disabled = True
 
     if st.session_state['question_choices']:
       current_question = np.random.choice(st.session_state['question_choices'])
