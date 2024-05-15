@@ -202,6 +202,7 @@ def create_streamlit_interface():
        st.session_state['message_history'] = []
       
     if st.session_state['current_question']:
+      st.session_state.disabled = True
       current_question = st.session_state['current_question']
       st.session_state['message_history'].append({'sender': "🤖Chatbot", 'text': current_question})
     
