@@ -194,9 +194,6 @@ def create_streamlit_interface():
     else:
         render_chat_interface()
 
-def handle_topic_selection(topic):
-
-
 def render_chat_interface():
     st.markdown("""
         <style>
