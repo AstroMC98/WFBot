@@ -164,7 +164,9 @@ def create_streamlit_interface():
     question_col1, question_col2, question_col3 = st.columns([1,1,1])
     current_question = ''
     if 'question_choices' not in st.session_state:
-          st.session_state['question_choices'] = None
+      st.session_state['question_choices'] = None
+    else:
+      question_choices = st.session_state['question_choices']
       
     with question_col1:
       if st.button("Prophethood"):
