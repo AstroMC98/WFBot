@@ -177,49 +177,46 @@ def create_streamlit_interface():
     if 'message_history' not in st.session_state:
        st.session_state['message_history'] = []
 
-
     # Topic Selection
     question_col1, question_col2, question_col3 = st.columns([1,1,1])
 
     with question_col1:
       button1 = st.button("Prophethood", key = "q1_clicked", disabled=st.session_state.get("disabled", False))
-      # if button1:
-      #   question_choices = topic_choices["Prophethood"]
-      #   st.session_state['question_choices'] = question_choices
-      #   st.session_state.disabled = True
 
     with question_col2:
       button2 = st.button("Tawhid", key = "q2_clicked", disabled=st.session_state.get("disabled", False))
-      # if button2:
-        # question_choices = topic_choices["Tawhid"]
-        # st.session_state['question_choices'] = question_choices
-        # st.session_state.disabled = True
 
     with question_col3:
       button3 = st.button("Qiyama", key = "q3_clicked", disabled=st.session_state.get("disabled", False))
-      # if button3:
-        # question_choices = topic_choices["Qiyama"]
-        # st.session_state['question_choices'] = question_choices
-        # st.session_state.disabled = True
 
     if st.session_state['q1_clicked']:
       st.session_state['question_choices' ]= topic_choices["Tawhid"]
       st.session_state.disabled = True
+      
+      current_question = np.random.choice(st.session_state['question_choices'])
+      st.session_state['current_question'] = current_question
+      st.session_state['message_history'].append({'sender': "🤖Chatbot", 'text': st.session_state['current_question']})
 
     if st.session_state['q2_clicked']:
       st.session_state['question_choices' ]= topic_choices["Prophethood"]
       st.session_state.disabled = True
+      
+      current_question = np.random.choice(st.session_state['question_choices'])
+      st.session_state['current_question'] = current_question
+      st.session_state['message_history'].append({'sender': "🤖Chatbot", 'text': st.session_state['current_question']})
   
     if st.session_state['q3_clicked']:
       st.session_state['question_choices' ]= topic_choices["Qiyama"]
       st.session_state.disabled = True
-
-    if st.session_state['question_choices']:
+      
       current_question = np.random.choice(st.session_state['question_choices'])
       st.session_state['current_question'] = current_question
       st.session_state['message_history'].append({'sender': "🤖Chatbot", 'text': st.session_state['current_question']})
       
-    
+      
+    if not st.session_state['question_choices']:
+      st.warning("Select a question")
+    else:
       # CSS for styling message history, fixed chat input, and labels
       st.markdown("""
           <style>
@@ -320,8 +317,7 @@ def create_streamlit_interface():
       if st.button("Start New Chat", key='start_new_chat'):
           start_new_chat()
 
-    else:
-      st.warning("Select a question")
+
   
   
 # Adjust the main part to work with session state
