@@ -163,7 +163,10 @@ def create_streamlit_interface():
 
     # Topic Selection
     question_col1, question_col2, question_col3 = st.columns([1,1,1])
-    current_question = ''
+
+    if 'current_question' not in st.session_state:
+      st.session_state['current_question'] = None    
+  
     if 'question_choices' not in st.session_state:
       st.session_state['question_choices'] = None
     else:
