@@ -163,7 +163,7 @@ def create_streamlit_interface():
 
     # Topic Selection
     st.session_state['Show_Questions'] = True
-    st.session_choice['current_question'] = None
+    st.session_state['current_question'] = None
     if st.session_state['Show_Questions']:
       question_col1, question_col2, question_col3 = st.columns([1,1,1])
       current_question = ''
@@ -189,13 +189,13 @@ def create_streamlit_interface():
 
       if st.session_state['question_choices']:
         current_question = np.random.choice(question_choices)
-        st.session_choice['current_question'] = current_question
+        st.session_state['current_question'] = current_question
 
     if 'message_history' not in st.session_state:
        st.session_state['message_history'] = []
       
     if st.session_state['current_question']:
-      current_question = st.session_choice['current_question']
+      current_question = st.session_state['current_question']
       st.session_state['message_history'].append({'sender': "🤖Chatbot", 'text': current_question})
       st.session_state['Show_Questions'] = False
     
