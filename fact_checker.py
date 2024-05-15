@@ -272,7 +272,7 @@ def render_chat_interface():
     st.chat_input("Type your query here:", key="query", on_submit=ask_question)
     st.markdown('</div>', unsafe_allow_html=True)
 
-    st.button("Start New Chat", key='start_new_chat', on_click = start_new_chat):
+    st.button("Start New Chat", key='start_new_chat', on_click = start_new_chat)
 
 def ask_question():
     user_query = st.session_state.query
