@@ -164,6 +164,7 @@ def create_streamlit_interface():
     # Topic Selection
     question_col1, question_col2, question_col3 = st.columns([1,1,1])
 
+    # Initialize Session States
     if 'current_question' not in st.session_state:
       st.session_state['current_question'] = None    
   
@@ -171,19 +172,24 @@ def create_streamlit_interface():
       st.session_state['question_choices'] = None
     else:
       question_choices = st.session_state['question_choices']
+
+    if st.session_state.get("q1_clicked", False) and st.session_state.get("q2_clicked", False) and st.session_state.get("q3_clicked", False):
+      st.session_state.disabled = False
+    else:
+      st.session_state.disabled = True
       
     with question_col1:
-      if st.button("Prophethood"):
+      if st.button("Prophethood", key = "q1_clicked", disabled=st.session_state.get("disabled", False)):
         question_choices = topic_choices["Prophethood"]
         st.session_state['question_choices'] = question_choices
 
     with question_col2:
-      if st.button("Tawhid"):
+      if st.button("Tawhid", key = "q2_clicked", disabled=st.session_state.get("disabled", False)):
         question_choices = topic_choices["Tawhid"]
         st.session_state['question_choices'] = question_choices
 
     with question_col3:
-      if st.button("Qiyama"):
+      if st.button("Qiyama", key = "q3_clicked", disabled=st.session_state.get("disabled", False)):
         question_choices = topic_choices["Qiyama"]
         st.session_state['question_choices'] = question_choices
 
