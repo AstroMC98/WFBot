@@ -179,7 +179,7 @@ def create_streamlit_interface():
 
 
     # Topic Selection
-    question_col1, question_col2, question_col3 = st.columns([1,1,1]
+    question_col1, question_col2, question_col3 = st.columns([1,1,1])
 
     with question_col1:
       button1 = st.button("Prophethood", key = "q1_clicked", disabled=st.session_state.get("disabled", False))
