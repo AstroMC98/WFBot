@@ -165,11 +165,23 @@ def create_streamlit_interface():
     st.session_state.disabled = st.session_state['current_question'] is not None
 
     # Topic Selection
+    def disable_buttons():
+        st.session_state.disabled = True
+    
     question_col1, question_col2, question_col3 = st.columns(3)
 
-    button1 = question_col1.button("Prophethood", key="q1_clicked", disabled=st.session_state.disabled)
-    button2 = question_col2.button("Tawhid", key="q2_clicked", disabled=st.session_state.disabled)
-    button3 = question_col3.button("Qiyama", key="q3_clicked", disabled=st.session_state.disabled)
+    button1 = question_col1.button("Prophethood",
+                                   key="q1_clicked",
+                                   on_click = disable_buttons,
+                                   disabled=st.session_state.disabled)
+    button2 = question_col2.button("Tawhid",
+                                   key="q2_clicked",
+                                   on_click = disable_buttons,
+                                   disabled=st.session_state.disabled)
+    button3 = question_col3.button("Qiyama",
+                                   key="q3_clicked",
+                                   on_click = disable_buttons,
+                                   disabled=st.session_state.disabled)
 
     if button1:
         handle_topic_selection("Prophethood")
@@ -189,7 +201,6 @@ def handle_topic_selection(topic):
     st.session_state['question_choices'] = topic_choices[topic]
     st.session_state['current_question'] = np.random.choice(st.session_state['question_choices'])
     st.session_state['message_history'].append({'sender': "🤖Chatbot", 'text': st.session_state['current_question']})
-    st.session_state.disabled = True
 
 def render_chat_interface():
     st.markdown("""
