@@ -179,24 +179,24 @@ def create_streamlit_interface():
 
 
     # Topic Selection
-    question_col1, question_col2, question_col3 = st.columns([1,1,1])
-    button1 = st.button("Prophethood", key = "q1_clicked", disabled=st.session_state.get("disabled", False))
-    button2 = st.button("Tawhid", key = "q2_clicked", disabled=st.session_state.get("disabled", False))
-    button3 = st.button("Qiyama", key = "q3_clicked", disabled=st.session_state.get("disabled", False))
-    
+    question_col1, question_col2, question_col3 = st.columns([1,1,1]
+
     with question_col1:
+      button1 = st.button("Prophethood", key = "q1_clicked", disabled=st.session_state.get("disabled", False))
       if button1:
         question_choices = topic_choices["Prophethood"]
         st.session_state['question_choices'] = question_choices
         st.session_state.disabled = True
 
     with question_col2:
+      button2 = st.button("Tawhid", key = "q2_clicked", disabled=st.session_state.get("disabled", False))
       if button2:
         question_choices = topic_choices["Tawhid"]
         st.session_state['question_choices'] = question_choices
         st.session_state.disabled = True
 
     with question_col3:
+      button3 = st.button("Qiyama", key = "q3_clicked", disabled=st.session_state.get("disabled", False))
       if button3:
         question_choices = topic_choices["Qiyama"]
         st.session_state['question_choices'] = question_choices
