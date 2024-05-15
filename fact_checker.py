@@ -197,14 +197,14 @@ def create_streamlit_interface():
     if st.session_state['question_choices']:
       current_question = np.random.choice(st.session_state['question_choices'])
       st.session_state['current_question'] = current_question
+      st.session_state['message_history'].append({'sender': "🤖Chatbot", 'text': st.session_state['current_question']})
 
     if 'message_history' not in st.session_state:
        st.session_state['message_history'] = []
       
     if st.session_state['current_question']:
       st.session_state.disabled = True
-      current_question = st.session_state['current_question']
-      st.session_state['message_history'].append({'sender': "🤖Chatbot", 'text': current_question})
+      
     
       # CSS for styling message history, fixed chat input, and labels
       st.markdown("""
