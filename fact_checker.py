@@ -186,9 +186,17 @@ def create_streamlit_interface():
 
     if 'message_history' not in st.session_state:
        st.session_state['message_history'] = []
+      
     if st.session_state['question_choices']:
       current_question = np.random.choice(question_choices)
       st.session_state['message_history'].append({'sender': "🤖Chatbot", 'text': current_question})
+
+      with question_col1:
+        st.empty()
+      with question_col2:
+        st.empty()
+      with question_col3:
+        st.empty()
     
       # CSS for styling message history, fixed chat input, and labels
       st.markdown("""
