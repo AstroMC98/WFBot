@@ -173,7 +173,8 @@ def create_streamlit_interface():
     else:
       question_choices = st.session_state['question_choices']
 
-    if st.session_state.get("q1_clicked", False) and st.session_state.get("q2_clicked", False) and st.session_state.get("q3_clicked", False):
+    #if st.session_state.get("q1_clicked", False) and st.session_state.get("q2_clicked", False) and st.session_state.get("q3_clicked", False):
+    if not st.session_state['current_question']:
       st.session_state.disabled = False
     else:
       st.session_state.disabled = True
